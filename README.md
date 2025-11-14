@@ -4,7 +4,7 @@ Terminal UI for playing lofi YouTube streams. Built with Go.
 
 I liked [bprendie/lofigirl](https://github.com/bprendie/lofigirl) and wanted to build it better. Go is nice here.
 
-Built by [Willy](https://willyv3.com) | [buildbywilly.com](https://buildbywilly.com)
+Built by [Willy](https://willyv3.com) | [builtbywilly.com](https://buildbywilly.com)
 
 ## Dependencies
 
