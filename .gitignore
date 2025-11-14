@@ -1,0 +1,26 @@
+# Binaries
+lofitui
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Goreleaser
+dist/
+
+# Test binary
+*.test
+
+# Output of the go coverage tool
+*.out
+
+# Go workspace file
+go.work
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
