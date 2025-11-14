@@ -1,4 +1,4 @@
-module github.com/lofitui
+module github.com/willyv3/lofitui
 
 go 1.25.4
 
