@@ -6,25 +6,6 @@ I liked [bprendie/lofigirl](https://github.com/bprendie/lofigirl) and wanted to 
 
 Built by [Willy](https://willyv3.com) | [builtbywilly.com](https://buildbywilly.com)
 
-## Dependencies
-
-Sorry, you need these:
-
-- `mpv` - plays the video
-- `yt-dlp` - extracts stream URLs
-
-```bash
-# Debian/Ubuntu
-sudo apt install mpv
-pip install yt-dlp
-
-# Arch
-sudo pacman -S mpv yt-dlp
-
-# macOS
-brew install mpv yt-dlp
-```
-
 ## Installation
 
 ### Homebrew
@@ -32,10 +13,14 @@ brew install mpv yt-dlp
 brew install willyv3/tap/lofitui
 ```
 
+Homebrew installs `mpv` and `yt-dlp` automatically.
+
 ### Go Install
 ```bash
 go install github.com/willyv3/lofitui@latest
 ```
+
+You'll need `mpv` and `yt-dlp` installed separately.
 
 ### From Source
 ```bash
@@ -44,6 +29,8 @@ cd lofitui
 go build
 ./lofitui
 ```
+
+You'll need `mpv` and `yt-dlp` installed separately.
 
 ## Usage
 
