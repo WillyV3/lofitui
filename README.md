@@ -64,7 +64,7 @@ Config stored in `~/.config/lofitui/config.json`
 - [Synthwave Radio](https://www.youtube.com/watch?v=4xDzrJKXOOY)
 - [Chillhop Music](https://www.youtube.com/watch?v=5yx6BWlEVcY)
 - [The Bootleg Boy](https://www.youtube.com/watch?v=FWjZ0x2M8og)
-- [Dreamhop Music](https://www.youtube.com/watch?v=kgx4WGK0oNU)
+- [Dreamhop Music](https://www.youtube.com/live/D5bqo8lcny4)
 - [Lofi Geek](https://www.youtube.com/watch?v=1tJ8sc8I4z0)
 - [STEEZYASFUCK](https://www.youtube.com/watch?v=S_MOd40zlYU)
 - [Homework Radio](https://www.youtube.com/watch?v=lTRiuFIWV54)

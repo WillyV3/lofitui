@@ -112,7 +112,7 @@ func getDefaultConfig() *Config {
 			{Name: "Synthwave Radio", URL: "https://www.youtube.com/watch?v=4xDzrJKXOOY"},
 			{Name: "Chillhop Music", URL: "https://www.youtube.com/watch?v=5yx6BWlEVcY"},
 			{Name: "The Bootleg Boy", URL: "https://www.youtube.com/watch?v=FWjZ0x2M8og"},
-			{Name: "Dreamhop Music", URL: "https://www.youtube.com/watch?v=kgx4WGK0oNU"},
+			{Name: "Dreamhop Music", URL: "https://www.youtube.com/live/D5bqo8lcny4"},
 			{Name: "Lofi Geek", URL: "https://www.youtube.com/watch?v=1tJ8sc8I4z0"},
 			{Name: "STEEZYASFUCK", URL: "https://www.youtube.com/watch?v=S_MOd40zlYU"},
 			{Name: "Homework Radio", URL: "https://www.youtube.com/watch?v=lTRiuFIWV54"},
