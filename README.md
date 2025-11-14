@@ -56,6 +56,14 @@ Run `lofitui` and use arrow keys to navigate.
 
 Config stored in `~/.config/lofitui/config.json`
 
+## Managing Streams
+
+Add, edit, or delete streams in two ways:
+
+**In the UI**: Press `m` to open preset management. Add new streams, edit existing ones, or delete channels you don't use.
+
+**Config file**: Edit `~/.config/lofitui/config.json` directly. Just paste in YouTube URLs and names.
+
 ## Default Streams
 
 - [Lofi Girl - Study](https://www.youtube.com/watch?v=jfKfPfyJRdk)
