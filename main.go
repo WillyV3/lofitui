@@ -655,7 +655,7 @@ func extractStreamURL(youtubeURL string) tea.Cmd {
 // playMPV launches mpv with the extracted stream URL
 func playMPV(streamURL string) tea.Cmd {
 	return tea.ExecProcess(
-		exec.Command("mpv", "--vo=tct", "--quiet", streamURL),
+		exec.Command("mpv", "--vo=tct", "--quiet", "--script=/usr/share/mpv/scripts/mpris.so", streamURL),
 		func(err error) tea.Msg {
 			// Stream ended (user quit mpv or it errored)
 			return streamEndedMsg{}
