@@ -48,8 +48,9 @@ const (
 
 // Messages
 type streamURLMsg struct {
-	url string
-	err error
+	url   string
+	title string
+	err   error
 }
 type streamEndedMsg struct{}
 
@@ -169,7 +170,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			return m, nil
 		}
 		// Launch mpv with the extracted URL
-		return m, playMPV(msg.url)
+		return m, playMPV(msg.url, msg.title)
 
 	case streamEndedMsg:
 		// Stream finished, return to main menu
@@ -223,7 +224,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 					m.loadingTitle = preset.Name
 					return m, tea.Batch(
 						spinner.Tick,
-						extractStreamURL(preset.URL),
+						extractStreamURL(preset.URL, preset.Name),
 					)
 				}
 			}
@@ -242,7 +243,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 					m.textInput.SetValue("")
 					return m, tea.Batch(
 						spinner.Tick,
-						extractStreamURL(url),
+						extractStreamURL(url, "Custom Stream"),
 					)
 				}
 			}
@@ -299,7 +300,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 					m.loadingTitle = preset.Name
 					return m, tea.Batch(
 						spinner.Tick,
-						extractStreamURL(preset.URL),
+						extractStreamURL(preset.URL, preset.Name),
 					)
 				}
 			}
@@ -640,7 +641,7 @@ func (m model) View() string {
 }
 
 // extractStreamURL extracts the actual stream URL using yt-dlp
-func extractStreamURL(youtubeURL string) tea.Cmd {
+func extractStreamURL(youtubeURL string, title string) tea.Cmd {
 	return func() tea.Msg {
 		cmd := exec.Command("yt-dlp", "-f", "best", "-g", youtubeURL)
 		output, err := cmd.Output()
@@ -648,14 +649,14 @@ func extractStreamURL(youtubeURL string) tea.Cmd {
 			return streamURLMsg{err: err}
 		}
 		streamURL := strings.TrimSpace(string(output))
-		return streamURLMsg{url: streamURL}
+		return streamURLMsg{url: streamURL, title: title}
 	}
 }
 
 // playMPV launches mpv with the extracted stream URL
-func playMPV(streamURL string) tea.Cmd {
+func playMPV(streamURL string, title string) tea.Cmd {
 	return tea.ExecProcess(
-		exec.Command("mpv", "--vo=tct", "--quiet", "--script=/usr/share/mpv/scripts/mpris.so", streamURL),
+		exec.Command("mpv", "--vo=tct", "--quiet", "--script=/etc/mpv/scripts/mpris.so", "--force-media-title="+title, streamURL),
 		func(err error) tea.Msg {
 			// Stream ended (user quit mpv or it errored)
 			return streamEndedMsg{}
