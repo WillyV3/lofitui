@@ -640,23 +640,23 @@ func (m model) View() string {
 	return ""
 }
 
-// extractStreamURL extracts the actual stream URL using yt-dlp
+// extractStreamURL used to pre-resolve one URL with `yt-dlp -g`, but a live
+// stream's video and audio are separate HLS manifests, so a single -g URL can
+// only ever carry one of them (that's why the app played sound with no video).
+// mpv resolves the stream itself via its ytdl hook (see playMPV), so this just
+// hands the YouTube URL straight through.
 func extractStreamURL(youtubeURL string, title string) tea.Cmd {
 	return func() tea.Msg {
-		cmd := exec.Command("yt-dlp", "-f", "best", "-g", youtubeURL)
-		output, err := cmd.Output()
-		if err != nil {
-			return streamURLMsg{err: err}
-		}
-		streamURL := strings.TrimSpace(string(output))
-		return streamURLMsg{url: streamURL, title: title}
+		return streamURLMsg{url: youtubeURL, title: title}
 	}
 }
 
-// playMPV launches mpv with the extracted stream URL
+// playMPV launches mpv on the YouTube URL. --ytdl-format is the fix: live lofi
+// radios have no pre-merged format, so plain "best" fails; bestvideo+bestaudio
+// makes mpv pull both HLS manifests and mux them, restoring the terminal video.
 func playMPV(streamURL string, title string) tea.Cmd {
 	return tea.ExecProcess(
-		exec.Command("mpv", "--vo=tct", "--quiet", "--script=/etc/mpv/scripts/mpris.so", "--force-media-title="+title, streamURL),
+		exec.Command("mpv", "--vo=tct", "--quiet", "--ytdl-format=bestvideo[height<=720]+bestaudio/best", "--script=/etc/mpv/scripts/mpris.so", "--force-media-title="+title, streamURL),
 		func(err error) tea.Msg {
 			// Stream ended (user quit mpv or it errored)
 			return streamEndedMsg{}
